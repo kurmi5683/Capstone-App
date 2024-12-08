@@ -1,0 +1,861 @@
+<app-navbar></app-navbar>
+
+<!--Tabs navigation-->
+<ul
+  class="mb-5 flex list-none flex-row flex-wrap border-b-0 pl-0"
+  role="tablist"
+  data-te-nav-ref
+>
+  <li role="presentation" class="flex-grow basis-0 text-center">
+    <a
+      href="#tabs-home02"
+      class="my-2 block border-x-0 border-b-2 border-t-0 border-transparent px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500 hover:isolate hover:border-transparent hover:bg-neutral-100 focus:isolate focus:border-transparent data-[te-nav-active]:border-primary data-[te-nav-active]:text-primary dark:text-neutral-400 dark:hover:bg-transparent dark:data-[te-nav-active]:border-primary-400 dark:data-[te-nav-active]:text-primary-400"
+      data-te-toggle="pill"
+      data-te-target="#tabs-home02"
+      data-te-nav-active
+      role="tab"
+      aria-controls="tabs-home02"
+      aria-selected="true"
+      >Packages</a
+    >
+  </li>
+  <li role="presentation" class="flex-grow basis-0 text-center">
+    <a
+      href="#tabs-profile02"
+      class="my-2 block border-x-0 border-b-2 border-t-0 border-transparent px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500 hover:isolate hover:border-transparent hover:bg-neutral-100 focus:isolate focus:border-transparent data-[te-nav-active]:border-primary data-[te-nav-active]:text-primary dark:text-neutral-400 dark:hover:bg-transparent dark:data-[te-nav-active]:border-primary-400 dark:data-[te-nav-active]:text-primary-400"
+      data-te-toggle="pill"
+      data-te-target="#tabs-profile02"
+      role="tab"
+      aria-controls="tabs-profile02"
+      aria-selected="false"
+      >Bookings</a
+    >
+  </li>
+  <li role="presentation" class="flex-grow basis-0 text-center">
+    <a
+      href="#tabs-messages02"
+      class="my-2 block border-x-0 border-b-2 border-t-0 border-transparent px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500 hover:isolate hover:border-transparent hover:bg-neutral-100 focus:isolate focus:border-transparent data-[te-nav-active]:border-primary data-[te-nav-active]:text-primary dark:text-neutral-400 dark:hover:bg-transparent dark:data-[te-nav-active]:border-primary-400 dark:data-[te-nav-active]:text-primary-400"
+      data-te-toggle="pill"
+      data-te-target="#tabs-messages02"
+      role="tab"
+      aria-controls="tabs-messages02"
+      aria-selected="false"
+      >Reviews</a
+    >
+  </li>
+</ul>
+
+<!--Tabs content-->
+<div class="my-2 p-2">
+  <!-- tab 1 -->
+  <div
+    class="hidden opacity-100 transition-opacity duration-150 ease-linear data-[te-tab-active]:block"
+    id="tabs-home02"
+    role="tabpanel"
+    aria-labelledby="tabs-home-tab02"
+    data-te-tab-active
+  >
+    <!-- Search Input -->
+    <div class="relative my-6 flex justify-center">
+      <div class="relative w-[20vw]" data-te-input-wrapper-init>
+        <input
+          type="text"
+          [(ngModel)]="searchText"
+          class="peer block min-h-[auto] w-full rounded-lg border-2 border-gray-300 bg-transparent px-4 py-2 leading-[1.6] outline-none transition-all duration-200 ease-linear focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:placeholder-opacity-100 peer-focus:text-primary dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:peer-focus:text-primary"
+          id="exampleSearch2"
+          placeholder="Search for a Package"
+        />
+        <label
+          for="exampleSearch2"
+          class="pointer-events-none absolute left-4 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
+        ></label>
+      </div>
+    </div>
+
+    <!-- Price Sort Buttons -->
+    <div class="relative my-6 flex justify-center">
+      <button
+        (click)="sortTours('asc')"
+        class="mr-2 p-2 border rounded bg-blue-500 text-white"
+      >
+        Sort Low to High
+      </button>
+      <button
+        (click)="sortTours('desc')"
+        class="p-2 border rounded bg-blue-500 text-white"
+      >
+        Sort High to Low
+      </button>
+    </div>
+
+    <!-- Tours List -->
+    <div class="container my-5 mx-auto px-4 md:px-6 lg:px-12">
+      <section class="mb-20 text-gray-800"></section>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <div
+          class="rounded-lg shadow-md bg-white overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-lg"
+          *ngFor="let tour of tours | customFilter : searchText"
+        >
+          <!-- Image Section -->
+          <div class="relative overflow-hidden bg-cover bg-no-repeat">
+            <img
+              class="w-full h-48 object-cover"
+              src="{{ tour.tour_img }}"
+              alt="Package Image"
+            />
+          </div>
+
+          <!-- Content Section -->
+          <div class="p-5 space-y-4">
+            <!-- Title -->
+            <h3
+              class="text-xl font-bold text-gray-900 transition duration-300 hover:text-blue-500"
+            >
+              {{ tour.tour_name }}
+            </h3>
+
+            <!-- Description -->
+            <p
+              class="text-sm text-gray-600 leading-relaxed transition duration-300 hover:text-gray-800"
+            >
+              {{ tour.tour_description }}
+            </p>
+
+            <!-- Price and dates-->
+            <div class="text-sm font-medium text-gray-800 space-y-1">
+              <div class="flex items-center space-x-2">
+                <span class="font-semibold text-gray-900">Price:</span>
+                <span
+                  class="text-blue-500 font-bold bg-blue-100 px-2 py-1 rounded-md"
+                >
+                  {{ tour.price }}
+                </span>
+              </div>
+              <div class="flex items-center space-x-2">
+                <span class="font-semibold text-gray-900">Start Date:</span>
+                <span class="text-green-600 bg-green-100 px-2 py-1 rounded-md">
+                  {{ tour.start_date | date }}
+                </span>
+              </div>
+              <div class="flex items-center space-x-2">
+                <span class="font-semibold text-gray-900">End Date:</span>
+                <span class="text-red-500 bg-red-100 px-2 py-1 rounded-md">
+                  {{ tour.end_date | date }}
+                </span>
+              </div>
+            </div>
+
+            <!-- Book Now Button -->
+            <div
+              class="p-4 border-t flex justify-center items-center bg-gray-50"
+            >
+              <button
+                type="button"
+                class="rounded w-full bg-blue-500 px-4 py-2 text-xs font-medium uppercase text-white shadow-md hover:bg-blue-600 transition duration-150 focus:outline-none focus:ring focus:ring-blue-300 active:bg-blue-700"
+                data-te-toggle="modal"
+                data-te-target="#TourModal"
+                (click)="createBooking(tour.tour_id, tour.price)"
+              >
+                Book Now
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- tab 2 -->
+  <div
+  class="hidden opacity-0 transition-opacity duration-150 ease-linear data-[te-tab-active]:block"
+  id="tabs-profile02"
+  role="tabpanel"
+  aria-labelledby="tabs-profile-tab02"
+>
+  <!-- Container for demo purpose -->
+  <div class="container my-3 py-6 mx-auto px-4 md:px-6 lg:px-12">
+    <!--Section: Design Block-->
+    <section class="mb-20 text-gray-800">
+      <div class="block rounded-lg shadow-lg bg-white p-4">
+        <div class="flex flex-col">
+          <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+            <div class="inline-block min-w-full sm:px-6 lg:px-8">
+              <div class="overflow-hidden">
+                <table class="min-w-full mb-0 border-collapse border border-gray-200">
+                  <thead class="border-b rounded-t-lg text-left bg-gray-200">
+                    <tr>
+                      <th
+                        scope="col"
+                        class="rounded-tl-lg text-sm font-medium px-6 py-4 text-gray-600"
+                      >
+                        Package Name
+                      </th>
+                      <th scope="col" class="text-sm font-medium px-6 py-4 text-gray-600">
+                        Head Count
+                      </th>
+                      <th scope="col" class="text-sm font-medium px-6 py-4 text-gray-600">
+                        Total Price
+                      </th>
+                      <th scope="col" class="text-sm font-medium px-6 py-4 text-gray-600">
+                        Status
+                      </th>
+                      <th
+                        scope="col"
+                        class="rounded-tr-lg text-sm font-medium px-6 py-4 text-gray-600"
+                      >
+                        <!-- Empty column for spacing -->
+                      </th>
+                      <th
+                        scope="col"
+                        class="rounded-tr-lg text-sm font-medium px-6 py-4 text-gray-600"
+                      >
+                        <!-- Empty column for spacing -->
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr
+                      class="border-b bg-gray-100 hover:bg-gray-200 transition duration-150"
+                      *ngFor="let booking of bookings"
+                    >
+                      <th
+                        class="text-sm font-medium px-6 py-4 whitespace-nowrap text-left text-gray-800"
+                        scope="row"
+                      >
+                        {{ booking.tour_name }}
+                      </th>
+                      <td
+                        class="text-sm font-normal px-6 py-4 whitespace-nowrap text-left text-gray-500"
+                      >
+                        {{ booking.count }}
+                      </td>
+                      <td
+                        class="text-sm font-normal px-6 py-4 whitespace-nowrap text-left text-gray-500"
+                      >
+                        {{ booking.count * booking.price }}
+                      </td>
+                      <td
+                        class="text-sm font-normal px-6 py-4 whitespace-nowrap text-left"
+                      >
+                        <span
+                          *ngIf="
+                            booking.Status === 'Pending' ||
+                            booking.Status === 'Confirmed'
+                          "
+                          class="text-green-600 font-semibold"
+                        >
+                          {{ booking.Status }}
+                        </span>
+                        <span
+                          *ngIf="
+                            booking.Status !== 'Pending' &&
+                            booking.Status !== 'Confirmed'
+                          "
+                          class="text-red-600 font-semibold whitespace-nowrap overflow-hidden text-ellipsis"
+                        >
+                          Cancelled Reason: {{ booking.Status }}
+                        </span>
+                      </td>
+
+                      <td
+                        class="text-sm font-normal px-6 py-4 whitespace-nowrap text-right"
+                      >
+                        <button
+                          data-te-toggle="modal"
+                          data-te-target="#BookingsModal"
+                          type="button"
+                          data-te-ripple-init
+                          data-te-ripple-color="light"
+                          (click)="
+                            editBooking(
+                              booking.booking_id,
+                              booking.tour_id,
+                              booking.price
+                            )
+                          "
+                          class="inline-block rounded bg-blue-500 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-lg transition duration-150 ease-in-out hover:bg-blue-600 focus:outline-none focus:bg-blue-600 focus:shadow-lg active:bg-blue-700"
+                        >
+                          Edit
+                        </button>
+                      </td>
+                      <td
+                        class="text-sm font-normal px-6 py-4 whitespace-nowrap text-right"
+                      >
+                        <button
+                          type="button"
+                          data-te-ripple-init
+                          data-te-ripple-color="light"
+                          (click)="deleteBooking(booking.booking_id)"
+                          class="inline-block rounded bg-red-500 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-lg transition duration-150 ease-in-out hover:bg-red-600 focus:outline-none focus:bg-red-600 focus:shadow-lg active:bg-red-700"
+                        >
+                          Delete
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--Section: Design Block-->
+    </section>
+  </div>
+</div>
+
+  <!-- tab 3 -->
+  <div
+    class="hidden opacity-0 transition-opacity duration-150 ease-linear data-[te-tab-active]:block"
+    id="tabs-messages02"
+    role="tabpanel"
+    aria-labelledby="tabs-profile-tab02"
+  >
+    <button
+      type="button"
+      data-te-toggle="modal"
+      data-te-target="#CreateReviewModal"
+      data-te-ripple-init
+      data-te-ripple-color="light"
+      class="inline-block rounded bg-primary ml-4 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+    >
+      Create a review
+    </button>
+    <div class="container my-12 py-12 mx-auto px-4 md:px-6 lg:px-12">
+      <!--Section: Design Block-->
+      <section class="mb-20 text-gray-800">
+        <div class="block rounded-lg shadow-lg bg-white">
+          <div class="flex flex-col">
+            <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+              <div class="inline-block min-w-full sm:px-6 lg:px-8">
+                <div class="overflow-hidden">
+                  <table class="min-w-full mb-0">
+                    <thead class="border-b rounded-t-lg text-left">
+                      <tr>
+                        <th
+                          scope="col"
+                          class="rounded-tl-lg text-sm font-medium px-6 py-4"
+                        >
+                          Package Name
+                        </th>
+                        <th scope="col" class="text-sm font-medium px-6 py-4">
+                          review Content
+                        </th>
+                        <th scope="col" class="text-sm font-medium px-6 py-4">
+                          Rating out of 5
+                        </th>
+                        <th
+                          scope="col"
+                          class="text-sm font-medium px-6 py-4"
+                        ></th>
+                        <th
+                          scope="col"
+                          class="text-sm font-medium px-6 py-4"
+                        ></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr
+                        class="border-b bg-gray-100"
+                        *ngFor="let review of reviews"
+                      >
+                        <th
+                          class="text-sm font-medium px-6 py-4 whitespace-nowrap text-left"
+                          scope="row"
+                        >
+                          {{ review.tour_name }}
+                        </th>
+                        <td
+                          class="text-sm font-normal px-6 py-4 whitespace-nowrap text-left text-gray-500"
+                        >
+                          {{ review.review_content }}
+                        </td>
+                        <td
+                          class="text-sm font-normal px-6 py-4 whitespace-nowrap text-left text-gray-500"
+                        >
+                          {{ review.review_rating }}
+                        </td>
+                        <td
+                          class="text-sm font-normal px-6 py-4 whitespace-nowrap text-right"
+                        >
+                          <button
+                            data-te-toggle="modal"
+                            data-te-target="#ReviewsModal"
+                            type="button"
+                            data-te-ripple-init
+                            data-te-ripple-color="light"
+                            (click)="
+                              editReview(review.review_id, review.tour_id)
+                            "
+                            class="inline-block rounded bg-info px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+                          >
+                            edit
+                          </button>
+                        </td>
+                        <td
+                          class="text-sm font-normal px-6 py-4 whitespace-nowrap text-right"
+                        >
+                          <button
+                            type="button"
+                            data-te-ripple-init
+                            data-te-ripple-color="light"
+                            (click)="deleteReview(review.review_id)"
+                            class="inline-block rounded bg-danger px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-danger-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-danger-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-danger-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+                          >
+                            Delete
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!--Section: Design Block-->
+    </div>
+  </div>
+</div>
+
+<!-- Button trigger modal -->
+<span type="button" class="hidden" data-te-toggle="modal"> launch </span>
+
+<!-- tour modal -->
+<div
+  data-te-modal-init
+  class="fixed left-0 top-0 z-[1055] hidden h-full w-full overflow-y-auto overflow-x-hidden outline-none"
+  id="TourModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalCenterTitle"
+  aria-modal="true"
+  role="dialog"
+>
+  <div
+    data-te-modal-dialog-ref
+    class="pointer-events-none relative flex min-h-[calc(100%-1rem)] w-auto translate-y-[-50px] items-center opacity-0 transition-all duration-300 ease-in-out min-[576px]:mx-auto min-[576px]:mt-7 min-[576px]:min-h-[calc(100%-3.5rem)] min-[576px]:max-w-[500px]"
+  >
+    <div
+      class="pointer-events-auto relative flex w-full flex-col rounded-md border-none bg-white bg-clip-padding text-current shadow-lg outline-none dark:bg-neutral-600"
+    >
+      <div
+        class="flex flex-shrink-0 items-center justify-between rounded-t-md border-b-2 border-neutral-100 border-opacity-100 p-4 dark:border-opacity-50"
+      >
+        <!--Modal title-->
+        <h5
+          class="text-xl font-medium leading-normal text-neutral-800 dark:text-neutral-200"
+          id="exampleModalCenterTitle"
+        >
+          Book this Package
+        </h5>
+        <!--Close button-->
+        <button
+          type="button"
+          class="box-content rounded-none border-none hover:no-underline hover:opacity-75 focus:opacity-100 focus:shadow-none focus:outline-none"
+          data-te-modal-dismiss
+          aria-label="Close"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="h-6 w-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+      </div>
+
+      <!--Modal body-->
+      <div class="relative p-4">
+        <div
+          class="block rounded-lg bg-white shadow-lg dark:bg-neutral-700 h-full md:max-w-sm mx-auto hover:shadow-xl transition-shadow duration-300"
+          *ngFor="let tour of singleTour"
+        >
+          <div
+            class="relative overflow-hidden bg-cover bg-no-repeat rounded-t-lg"
+            data-te-ripple-init
+            data-te-ripple-color="light"
+          >
+            <img
+              class="w-full h-[30vh] object-cover"
+              src="{{ tour.tour_img }}"
+              alt="Tour Image"
+            />
+          </div>
+          <div class="p-6">
+            <h5
+              class="mb-2 text-2xl font-semibold text-neutral-800 dark:text-neutral-50"
+            >
+              {{ tour.tour_name }}
+            </h5>
+            <p class="mb-4 text-base text-neutral-600 dark:text-neutral-200">
+              {{ tour.tour_description }}
+            </p>
+            <p
+              class="mb-4 text-lg font-medium text-primary dark:text-primary-400"
+            >
+              Price Per Head: <span class="font-bold">{{ tour.price }}</span>
+            </p>
+            <form
+              [formGroup]="addBookingForm"
+              (ngSubmit)="onAddBookingSubmit()"
+              class="space-y-4"
+            >
+              <div class="relative">
+                <input
+                  formControlName="count"
+                  type="number"
+                  class="peer block w-full rounded-lg border border-gray-300 bg-transparent px-4 py-2.5 text-sm text-gray-900 dark:text-neutral-200 placeholder-gray-500 dark:placeholder-neutral-500 outline-none transition focus:border-primary-500 focus:ring focus:ring-primary-300 dark:focus:ring-primary-800"
+                  id="exampleFormControlInputNumber"
+                  placeholder=" "
+                />
+                <label
+                  for="exampleFormControlInputNumber"
+                  class="absolute left-3 top-2.5 text-sm text-gray-500 dark:text-neutral-300 transition-transform peer-placeholder-shown:translate-y-2 peer-placeholder-shown:scale-100 peer-focus:-translate-y-2.5 peer-focus:scale-90 peer-focus:text-primary dark:peer-focus:text-primary-400"
+                >
+                  Number of People Attending
+                </label>
+              </div>
+              <button
+                type="submit"
+                class="w-full rounded-lg bg-primary px-6 py-3 text-sm font-medium uppercase text-white shadow-lg transition duration-200 ease-in-out hover:bg-primary-600 focus:outline-none focus:ring focus:ring-primary-300 active:bg-primary-700 dark:bg-primary-600 dark:hover:bg-primary-500 dark:focus:ring-primary-800"
+                data-te-ripple-init
+                data-te-ripple-color="light"
+              >
+                Submit Booking
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Bookings Modal -->
+<div
+  data-te-modal-init
+  class="fixed left-0 top-0 z-[1055] hidden h-full w-full overflow-y-auto overflow-x-hidden outline-none"
+  id="BookingsModal"
+  tabindex="-1"
+  aria-labelledby="BookingsModalLabel"
+  aria-hidden="true"
+>
+  <div
+    data-te-modal-dialog-ref
+    class="pointer-events-none relative w-auto translate-y-[-50px] opacity-0 transition-all duration-300 ease-in-out min-[576px]:mx-auto min-[576px]:mt-7 min-[576px]:max-w-[500px]"
+  >
+    <div
+      class="min-[576px]:shadow-[0_0.5rem_1rem_rgba(#000, 0.15)] pointer-events-auto relative flex w-full flex-col rounded-md border-none bg-white bg-clip-padding text-current shadow-lg outline-none dark:bg-neutral-600"
+    >
+      <div
+        class="flex flex-shrink-0 items-center justify-between rounded-t-md border-b-2 border-neutral-100 border-opacity-100 p-4 dark:border-opacity-50"
+      >
+        <!--Modal title-->
+        <h5
+          class="text-xl font-medium leading-normal text-neutral-800 dark:text-neutral-200"
+          id="BookingsModalLabel"
+        >
+          Edit a Booking
+        </h5>
+        <!--Close button-->
+        <button
+          type="button"
+          class="box-content rounded-none border-none hover:no-underline hover:opacity-75 focus:opacity-100 focus:shadow-none focus:outline-none"
+          data-te-modal-dismiss
+          aria-label="Close"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="h-6 w-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+      </div>
+
+      <!--Modal body-->
+      <div class="relative flex-auto p-4" data-te-modal-body-ref>
+        <form [formGroup]="editBookingForm" (ngSubmit)="onEditBookingSubmit()">
+          <!--Tour Name input-->
+          <div class="relative mb-6" data-te-input-wrapper-init>
+            <input
+              formControlName="count"
+              type="number"
+              class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+              id="exampleInput8"
+              placeholder="Head Count"
+            />
+            <label
+              for="exampleInput8"
+              class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
+              >Number of poeple attending
+            </label>
+          </div>
+
+          <!--Submit button-->
+          <button
+            type="submit"
+            class="dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]] inline-block w-full rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+            data-te-ripple-init
+            data-te-ripple-color="light"
+            data-te-modal-dismiss
+          >
+            Submit edited PAckage
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--reviews Modal -->
+<div
+  data-te-modal-init
+  class="fixed left-0 top-0 z-[1055] hidden h-full w-full overflow-y-auto overflow-x-hidden outline-none"
+  id="ReviewsModal"
+  tabindex="-1"
+  aria-labelledby="BookingsModalLabel"
+  aria-hidden="true"
+>
+  <div
+    data-te-modal-dialog-ref
+    class="pointer-events-none relative w-auto translate-y-[-50px] opacity-0 transition-all duration-300 ease-in-out min-[576px]:mx-auto min-[576px]:mt-7 min-[576px]:max-w-[500px]"
+  >
+    <div
+      class="min-[576px]:shadow-[0_0.5rem_1rem_rgba(#000, 0.15)] pointer-events-auto relative flex w-full flex-col rounded-md border-none bg-white bg-clip-padding text-current shadow-lg outline-none dark:bg-neutral-600"
+    >
+      <div
+        class="flex flex-shrink-0 items-center justify-between rounded-t-md border-b-2 border-neutral-100 border-opacity-100 p-4 dark:border-opacity-50"
+      >
+        <!--Modal title-->
+        <h5
+          class="text-xl font-medium leading-normal text-neutral-800 dark:text-neutral-200"
+          id="BookingsModalLabel"
+        >
+          Edit a Review
+        </h5>
+        <!--Close button-->
+        <button
+          type="button"
+          class="box-content rounded-none border-none hover:no-underline hover:opacity-75 focus:opacity-100 focus:shadow-none focus:outline-none"
+          data-te-modal-dismiss
+          aria-label="Close"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="h-6 w-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+      </div>
+
+      <!--Modal body-->
+      <div class="relative flex-auto p-4" data-te-modal-body-ref>
+        <form [formGroup]="editReviewForm" (ngSubmit)="onEditReviewSubmit()">
+          <!--Tour Name input-->
+          <div class="relative mb-6" data-te-input-wrapper-init>
+            <textarea
+              formControlName="review_content"
+              type="text"
+              class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+              id="exampleInput9"
+              placeholder="Enter Review content"
+            ></textarea>
+            <label
+              for="exampleInput9"
+              class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
+              >Enter Review content
+            </label>
+          </div>
+
+          <div class="relative mb-6">
+            <label
+              for="rating"
+              class="block text-gray-700 text-sm font-bold mb-2"
+              >Select a rating: 1 from left for lowest and 5 on right for
+              highest</label
+            >
+
+            <div class="flex flex-row-reverse justify-center">
+              <label
+                *ngFor="let star of [5, 4, 3, 2, 1]"
+                class="text-xl cursor-pointer"
+              >
+                <input
+                  type="radio"
+                  [id]="'star' + star"
+                  [value]="star"
+                  formControlName="review_rating"
+                />
+                &#9733;
+              </label>
+            </div>
+          </div>
+
+          <!--Submit button-->
+          <button
+            type="submit"
+            class="dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]] inline-block w-full rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+            data-te-ripple-init
+            data-te-ripple-color="light"
+            data-te-modal-dismiss
+          >
+            Submit edited PAckage
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- create a review modal -->
+
+<div
+  data-te-modal-init
+  class="fixed left-0 top-0 z-[1055] hidden h-full w-full overflow-y-auto overflow-x-hidden outline-none"
+  id="CreateReviewModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalCenterTitle"
+  aria-modal="true"
+  role="dialog"
+>
+  <div
+    data-te-modal-dialog-ref
+    class="pointer-events-none relative flex min-h-[calc(100%-1rem)] w-auto translate-y-[-50px] items-center opacity-0 transition-all duration-300 ease-in-out min-[576px]:mx-auto min-[576px]:mt-7 min-[576px]:min-h-[calc(100%-3.5rem)] min-[576px]:max-w-[500px]"
+  >
+    <div
+      class="pointer-events-auto relative flex w-full flex-col rounded-md border-none bg-white bg-clip-padding text-current shadow-lg outline-none dark:bg-neutral-600"
+    >
+      <div
+        class="flex flex-shrink-0 items-center justify-between rounded-t-md border-b-2 border-neutral-100 border-opacity-100 p-4 dark:border-opacity-50"
+      >
+        <!--Modal title-->
+        <h5
+          class="text-xl font-medium leading-normal text-neutral-800 dark:text-neutral-200"
+          id="exampleModalCenterTitle"
+        >
+          Create a review for this Package
+        </h5>
+        <!--Close button-->
+        <button
+          type="button"
+          class="box-content rounded-none border-none hover:no-underline hover:opacity-75 focus:opacity-100 focus:shadow-none focus:outline-none"
+          data-te-modal-dismiss
+          aria-label="Close"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="h-6 w-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+      </div>
+
+      <!--Modal body-->
+      <div class="relative p-4">
+        <form [formGroup]="addReviewForm" (ngSubmit)="onAddReviewSubmit()">
+          <div class="relative mb-6">
+            <select
+              data-te-select-init
+              data-te-select-placeholder="Select a PAckage "
+              class="form-select bg-gray-500 rounded-full p-2 m-2 text-center text-white"
+              id="select_user_${project.project_id}"
+              aria-label="Default select example"
+              style="flex-grow: 1"
+              formControlName="tour_id"
+            >
+              <option *ngFor="let tour of tours" [value]="tour.tour_id">
+                {{ tour.tour_name }}
+              </option>
+            </select>
+          </div>
+          <!--Tour Name input-->
+          <div class="relative mb-6" data-te-input-wrapper-init>
+            <textarea
+              formControlName="review_content"
+              type="text"
+              class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+              id="exampleInput9"
+              placeholder="Enter Review content"
+            ></textarea>
+            <label
+              for="exampleInput9"
+              class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
+              >Enter Review content
+            </label>
+          </div>
+
+          <div class="relative mb-6">
+            <label
+              for="rating"
+              class="block text-gray-700 text-sm font-bold mb-2"
+              >Select a rating: 1 from left for lowest and 5 on right for
+              highest</label
+            >
+
+            <div class="flex flex-row-reverse justify-center">
+              <label
+                *ngFor="let star of [5, 4, 3, 2, 1]"
+                class="text-xl cursor-pointer"
+              >
+                <input
+                  type="radio"
+                  [id]="'star' + star"
+                  [value]="star"
+                  formControlName="review_rating"
+                />
+                &#9733;
+              </label>
+            </div>
+          </div>
+
+          <!--Submit button-->
+          <button
+            type="submit"
+            class="dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]] inline-block w-full rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+            data-te-ripple-init
+            data-te-ripple-color="light"
+            data-te-modal-dismiss
+          >
+            Submit edited Package
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

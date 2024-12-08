@@ -1,0 +1,1041 @@
+<app-navbar></app-navbar>
+<!--Tabs navigation-->
+
+<main class="p-2 flex flex-col lg:flex-row">
+  <ul
+    class="mr-4 flex list-none flex-wrap lg:flex-col lg:justify-start basis-[10%] lg:h-[60vh] space-y-2 bg-white shadow-lg rounded-lg border border-gray-200 p-4"
+    role="tablist"
+    data-te-nav-ref
+  >
+    <!-- Tours Tab -->
+    <li role="presentation" class="text-center w-full">
+      <p
+        class="my-2 block px-4 py-3 text-sm font-semibold uppercase leading-tight text-gray-600 bg-gray-100 rounded-lg cursor-pointer shadow-md hover:bg-blue-500 hover:text-white hover:shadow-lg focus:ring-2 focus:ring-blue-400 transition-all duration-300 data-[te-nav-active]:bg-blue-600 data-[te-nav-active]:text-white"
+        data-te-toggle="pill"
+        data-te-target="#tabs-home01"
+        data-te-nav-active
+        role="tab"
+        aria-controls="tabs-home01"
+        aria-selected="true"
+      >
+        Packages
+      </p>
+    </li>
+
+    <!-- Add Tours Tab -->
+    <li role="presentation" class="text-center w-full">
+      <a
+        class="my-2 block px-4 py-3 text-sm font-semibold uppercase leading-tight text-gray-600 bg-gray-100 rounded-lg cursor-pointer shadow-md hover:bg-green-500 hover:text-white hover:shadow-lg focus:ring-2 focus:ring-green-400 transition-all duration-300 data-[te-nav-active]:bg-green-600 data-[te-nav-active]:text-white"
+        data-te-toggle="pill"
+        data-te-target="#tabs-profile01"
+        role="tab"
+        aria-controls="tabs-profile01"
+        aria-selected="false"
+      >
+        Add Packages
+      </a>
+    </li>
+
+    <!-- Users Tab -->
+    <li role="presentation" class="text-center w-full">
+      <p
+        class="my-2 block px-4 py-3 text-sm font-semibold uppercase leading-tight text-gray-600 bg-gray-100 rounded-lg cursor-pointer shadow-md hover:bg-purple-500 hover:text-white hover:shadow-lg focus:ring-2 focus:ring-purple-400 transition-all duration-300 data-[te-nav-active]:bg-purple-600 data-[te-nav-active]:text-white"
+        data-te-toggle="pill"
+        data-te-target="#tabs-messages01"
+        role="tab"
+        aria-controls="tabs-messages01"
+        aria-selected="false"
+      >
+        Users
+      </p>
+    </li>
+
+    <!-- Bookings Tab -->
+    <li role="presentation" class="text-center w-full">
+      <p
+        class="my-2 block px-4 py-3 text-sm font-semibold uppercase leading-tight text-gray-600 bg-gray-100 rounded-lg cursor-pointer shadow-md hover:bg-yellow-500 hover:text-white hover:shadow-lg focus:ring-2 focus:ring-yellow-400 transition-all duration-300 data-[te-nav-active]:bg-yellow-600 data-[te-nav-active]:text-white"
+        data-te-toggle="pill"
+        data-te-target="#tabs-messages02"
+        role="tab"
+        aria-controls="tabs-messages02"
+        aria-selected="false"
+      >
+        Bookings
+      </p>
+    </li>
+
+    <!-- Reviews Tab -->
+    <li role="presentation" class="text-center w-full">
+      <p
+        class="my-2 block px-4 py-3 text-sm font-semibold uppercase leading-tight text-gray-600 bg-gray-100 rounded-lg cursor-pointer shadow-md hover:bg-red-500 hover:text-white hover:shadow-lg focus:ring-2 focus:ring-red-400 transition-all duration-300 data-[te-nav-active]:bg-red-600 data-[te-nav-active]:text-white"
+        data-te-toggle="pill"
+        data-te-target="#tabs-messages03"
+        role="tab"
+        aria-controls="tabs-messages03"
+        aria-selected="false"
+      >
+        Reviews
+      </p>
+    </li>
+  </ul>
+
+  <!--Tabs content-->
+  <div class="my-2 p-2 basis-[90%] float-left">
+    <!-- tab 1 -->
+    <div
+      class="hidden opacity-100 transition-opacity duration-150 ease-linear data-[te-tab-active]:block"
+      id="tabs-home01"
+      role="tabpanel"
+      aria-labelledby="tabs-home-tab01"
+      data-te-tab-active
+    >
+      <!-- Container for demo purpose -->
+      <div class="container my-5 mx-auto px-4 md:px-6 lg:px-12">
+        <!-- Section: Design Block -->
+        <section class="mb-20 text-gray-800">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div
+              *ngFor="let tour of tours"
+              class="rounded-lg shadow-md bg-white overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-lg"
+            >
+              <!-- Image -->
+              <img
+                src="{{ tour.tour_img }}"
+                alt="Image Not Available"
+                class="w-full h-48 object-cover"
+              />
+
+              <!-- Content -->
+              <div class="p-5 space-y-4">
+                <!-- Title -->
+                <h3
+                  class="text-xl font-bold text-gray-900 transition duration-300 hover:text-blue-500"
+                >
+                  {{ tour.tour_name }}
+                </h3>
+
+                <!-- Description -->
+                <p
+                  class="text-sm text-gray-600 leading-relaxed transition duration-300 hover:text-gray-800"
+                >
+                  {{ tour.tour_description }}
+                </p>
+
+                <!-- Date & Price -->
+                <div class="text-sm font-medium text-gray-800 space-y-1">
+                  <div class="flex items-center space-x-2">
+                    <span class="font-semibold text-gray-900">Price:</span>
+                    <span
+                      class="text-blue-500 font-bold bg-blue-100 px-2 py-1 rounded-md"
+                    >
+                      {{ tour.price }}
+                    </span>
+                  </div>
+                  <div class="flex items-center space-x-2">
+                    <span class="font-semibold text-gray-900">Start Date:</span>
+                    <span
+                      class="text-green-600 bg-green-100 px-2 py-1 rounded-md"
+                    >
+                      {{ tour.start_date | date }}
+                    </span>
+                  </div>
+                  <div class="flex items-center space-x-2">
+                    <span class="font-semibold text-gray-900">End Date:</span>
+                    <span class="text-red-500 bg-red-100 px-2 py-1 rounded-md">
+                      {{ tour.end_date | date }}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Buttons -->
+              <div
+                class="p-4 border-t flex justify-between items-center bg-gray-50"
+              >
+                <button
+                  type="button"
+                  (click)="editTour(tour.tour_id)"
+                  class="rounded bg-blue-500 px-4 py-2 text-xs font-medium uppercase text-white shadow-md hover:bg-blue-600 transition duration-150 focus:outline-none focus:ring focus:ring-blue-300 active:bg-blue-700"
+                  data-te-toggle="modal"
+                  data-te-target="#to urModal"
+                  data-te-ripple-init
+                  data-te-ripple-color="light"
+                >
+                  Edit
+                </button>
+                <button
+                  type="button"
+                  (click)="deleteTour(tour.tour_id)"
+                  class="rounded bg-red-500 px-4 py-2 text-xs font-medium uppercase text-white shadow-md hover:bg-red-600 transition duration-150 focus:outline-none focus:ring focus:ring-red-300 active:bg-red-700"
+                  data-te-ripple-init
+                  data-te-ripple-color="light"
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- Section: Design Block -->
+      </div>
+      <!-- Container for demo purpose -->
+    </div>
+
+    <!-- Tab 2 -->
+    <div
+      class="hidden opacity-0 py-3 transition-opacity duration-150 ease-linear data-[te-tab-active]:flex justify-center"
+      id="tabs-profile01"
+      role="tabpanel"
+      aria-labelledby="tabs-profile-tab01"
+    >
+      <div
+        class="block max-w-xl w-[50vw] mt-4 rounded-lg bg-white p-6 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700"
+      >
+        <form [formGroup]="addTourForm" (ngSubmit)="onAddTourSubmit()">
+          <!--Tour Name input-->
+          <div class="relative mb-6" data-te-input-wrapper-init>
+            <input
+              formControlName="tour_name"
+              type="text"
+              class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+              id="exampleInput8"
+              placeholder="Tour Name"
+            />
+            <label
+              for="exampleInput8"
+              class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
+              >Package Name
+            </label>
+          </div>
+
+          <!--Description textarea-->
+          <div class="relative mb-6" data-te-input-wrapper-init>
+            <textarea
+              formControlName="tour_description"
+              class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+              id="exampleFormControlTextarea13"
+              rows="3"
+              placeholder="Description"
+            ></textarea>
+            <label
+              for="exampleFormControlTextarea13"
+              class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
+              >Description
+            </label>
+          </div>
+
+          <!--Image input-->
+          <div class="relative mb-6" data-te-input-wrapper-init>
+            <input
+              formControlName="tour_img"
+              type="url"
+              class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+              id="exampleFormControlInputURL"
+              placeholder="Example label"
+            />
+            <label
+              for="exampleFormControlInputURL"
+              class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
+              >URL input
+            </label>
+          </div>
+          <!-- price input -->
+          <div class="relative mb-3" data-te-input-wrapper-init>
+            <input
+              formControlName="price"
+              type="number"
+              class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+              id="exampleFormControlInputNumber"
+              placeholder="Example label"
+            />
+            <label
+              for="exampleFormControlInputNumber"
+              class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
+              >Price
+            </label>
+          </div>
+          <div
+            class="relative mb-3"
+            data-te-datepicker-init
+            data-te-format="mm/dd/yyyy"
+            data-te-input-wrapper-init
+          >
+            <input
+              formControlName="start_date"
+              type="text"
+              class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+              placeholder="Select a date"
+              data-te-datepicker-toggle-ref
+              data-te-datepicker-toggle-button-ref
+            />
+            <label
+              for="floatingInput"
+              class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
+              >Select start date</label
+            >
+          </div>
+          <div
+            class="relative mb-3"
+            data-te-datepicker-init
+            data-te-format="mm/dd/yyyy"
+            data-te-input-wrapper-init
+          >
+            <input
+              formControlName="end_date"
+              type="text"
+              class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+              placeholder="Select a date"
+              data-te-datepicker-toggle-ref
+              data-te-datepicker-toggle-button-ref
+            />
+            <label
+              for="floatingInput"
+              class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
+              >Select an end date</label
+            >
+          </div>
+          <!--Submit button-->
+          <button
+            type="submit"
+            class="dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]] inline-block w-full rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+            data-te-ripple-init
+            data-te-ripple-color="light"
+          >
+            Add Package
+          </button>
+        </form>
+      </div>
+    </div>
+    <!-- tab 3 -->
+    <div
+      class="hidden opacity-0 transition-opacity duration-150 ease-linear data-[te-tab-active]:block"
+      id="tabs-messages01"
+      role="tabpanel"
+      aria-labelledby="tabs-profile-tab01"
+    >
+      <div class="container my-3 py-3 mx-auto px-4 md:px-6 lg:px-12">
+        <!--Section: Design Block-->
+        <section class="mb-20 text-gray-800">
+          <div class="block rounded-lg shadow-lg bg-white">
+            <div class="flex flex-col">
+              <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+                <div class="inline-block min-w-full sm:px-6 lg:px-8">
+                  <div class="overflow-hidden">
+                    <table class="min-w-full mb-0">
+                      <thead class="border-b bg-gray-50 rounded-t-lg text-left">
+                        <tr>
+                          <th
+                            scope="col"
+                            class="rounded-tl-lg text-sm font-medium px-6 py-4"
+                          >
+                            Name
+                          </th>
+                          <th scope="col" class="text-sm font-medium px-6 py-4">
+                            FUll Name
+                          </th>
+                          <th scope="col" class="text-sm font-medium px-6 py-4">
+                            Role
+                          </th>
+
+                          <th
+                            scope="col"
+                            class="rounded-tr-lg text-sm font-medium px-6 py-4"
+                          ></th>
+                          <th
+                            scope="col"
+                            class="rounded-tr-lg text-sm font-medium px-6 py-4"
+                          ></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr class="border-b" *ngFor="let user of users">
+                          <th
+                            scope="row"
+                            class="text-sm font-normal px-3 py-4 whitespace-nowrap text-left"
+                          >
+                            <p class="mb-0.5 font-medium">
+                              {{ user.email }}
+                            </p>
+                          </th>
+                          <td
+                            class="text-sm font-normal px-6 py-4 whitespace-nowrap text-left"
+                          >
+                            <p class="mb-0.5 text-gray-500">
+                              {{ user.fullName }}
+                            </p>
+                          </td>
+
+                          <td
+                            class="align-middle text-gray-500 text-sm font-normal px-6 py-4 whitespace-nowrap text-left"
+                          >
+                            {{ user.isAdmin ? "Admin" : "User" }}
+                          </td>
+                          <td
+                            class="text-sm font-normal px-6 py-4 whitespace-nowrap text-right"
+                          >
+                            <button
+                              type="button"
+                              data-te-toggle="modal"
+                              data-te-target="#userModal"
+                              data-te-ripple-init
+                              data-te-ripple-color="light"
+                              (click)="editUser(user._id)"
+                              class="inline-block rounded bg-info px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+                            >
+                              edit
+                            </button>
+                          </td>
+                          <td
+                            class="text-sm font-normal px-6 py-4 whitespace-nowrap text-right"
+                          >
+                            <button
+                              type="button"
+                              data-te-ripple-init
+                              data-te-ripple-color="light"
+                              (click)="deleteUser(user._id)"
+                              class="inline-block rounded bg-danger px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-danger-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-danger-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-danger-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+                            >
+                              Delete
+                            </button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!--Section: Design Block-->
+      </div>
+    </div>
+    <!-- tab 4 -->
+    <div
+      class="hidden opacity-0 transition-opacity duration-150 ease-linear data-[te-tab-active]:block"
+      id="tabs-messages02"
+      role="tabpanel"
+      aria-labelledby="tabs-profile-tab01"
+    >
+      <!-- Container for demo purpose -->
+      <div class="container my-3 py-6 mx-auto px-4 md:px-6 lg:px-12">
+        <!--Section: Design Block-->
+        <section class="mb-20 text-gray-800">
+          <div class="block rounded-lg shadow-lg bg-white">
+            <div class="flex flex-col">
+              <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+                <div class="inline-block min-w-full sm:px-6 lg:px-8">
+                  <div class="overflow-hidden">
+                    <table class="min-w-full mb-0">
+                      <thead class="border-b rounded-t-lg text-left">
+                        <tr>
+                          <th
+                            scope="col"
+                            class="rounded-tl-lg text-sm font-medium px-6 py-4"
+                          >
+                            Tour Name
+                          </th>
+                          <th scope="col" class="text-sm font-medium px-6 py-4">
+                            Head Count
+                          </th>
+
+                          <th scope="col" class="text-sm font-medium px-6 py-4">
+                            Total Price
+                          </th>
+                          <th scope="col" class="text-sm font-medium px-6 py-4">
+                            Action
+                          </th>
+                          <th
+                            scope="col"
+                            class="rounded-tr-lg text-sm font-medium px-6 py-4"
+                          ></th>
+                          <th
+                            scope="col"
+                            class="rounded-tr-lg text-sm font-medium px-6 py-4"
+                          ></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr
+                          class="border-b bg-gray-100"
+                          *ngFor="let booking of bookings"
+                        >
+                          <th
+                            class="text-sm font-medium px-6 py-4 whitespace-nowrap text-left"
+                            scope="row"
+                          >
+                            {{ booking.tour_name }}
+                          </th>
+                          <td
+                            class="text-sm font-normal px-6 py-4 whitespace-nowrap text-left text-gray-500"
+                          >
+                            {{ booking.count }}
+                          </td>
+
+                          <td
+                            class="text-sm font-normal px-6 py-4 whitespace-nowrap text-left text-gray-500"
+                          >
+                            {{ booking.count * booking.price }}
+                          </td>
+                          <td
+                            class="text-sm font-normal px-6 py-4 whitespace-nowrap text-right"
+                          >
+                            <button
+                              *ngIf="booking.status === 'Pending'"
+                              type="button"
+                              class="inline-block rounded bg-success px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-md transition duration-150 ease-in-out hover:bg-success-600 focus:outline-none active:bg-success-700"
+                              (click)="approveBooking(booking.booking_id)"
+                            >
+                              Approve
+                            </button>
+                            <button
+                              *ngIf="booking.status === 'Pending'"
+                              type="button"
+                              class="inline-block rounded bg-red-500 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-md transition duration-150 ease-in-out hover:bg-red-600 focus:outline-none active:bg-red-700"
+                              (click)="openCancelModal(booking.booking_id)"
+                            >
+                              Cancel
+                            </button>
+                            <span
+                              *ngIf="booking.status === 'Confirmed'"
+                              class="text-green-600 font-semibold"
+                            >
+                              Confirmed
+                            </span>
+                            <span
+                              *ngIf="booking.status !== 'Confirmed'"
+                              class="text-red-600 font-semibold"
+                            >
+                              Cancelled
+                            </span>
+                          </td>
+                          <td
+                            class="text-sm font-normal px-6 py-4 whitespace-nowrap text-right"
+                          >
+                            <button
+                              data-te-toggle="modal"
+                              data-te-target="#BookingsModal"
+                              type="button"
+                              data-te-ripple-init
+                              data-te-ripple-color="light"
+                              (click)="
+                                editBooking(
+                                  booking.booking_id,
+                                  booking.tour_id,
+                                  booking.user_id,
+                                  booking.price
+                                )
+                              "
+                              class="inline-block rounded bg-info px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+                            >
+                              edit
+                            </button>
+                          </td>
+                          <td
+                            class="text-sm font-normal px-6 py-4 whitespace-nowrap text-right"
+                          >
+                            <button
+                              type="button"
+                              data-te-ripple-init
+                              data-te-ripple-color="light"
+                              (click)="deleteBooking(booking.booking_id)"
+                              class="inline-block rounded bg-danger px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-danger-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-danger-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-danger-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+                            >
+                              Delete
+                            </button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!--Section: Design Block-->
+      </div>
+      <!-- Container for demo purpose -->
+    </div>
+    <!-- tab 5 -->
+    <div
+      class="hidden opacity-0 transition-opacity duration-150 ease-linear data-[te-tab-active]:block"
+      id="tabs-messages03"
+      role="tabpanel"
+      aria-labelledby="tabs-profile-tab01"
+    >
+      <!-- Container for demo purpose -->
+      <div class="container my-12 py-12 mx-auto px-4 md:px-6 lg:px-12">
+        <!--Section: Design Block-->
+        <section class="mb-20 text-gray-800">
+          <div class="block rounded-lg shadow-lg bg-white">
+            <div class="flex flex-col">
+              <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+                <div class="inline-block min-w-full sm:px-6 lg:px-8">
+                  <div class="overflow-hidden">
+                    <table class="min-w-full mb-0">
+                      <thead class="border-b rounded-t-lg text-left">
+                        <tr>
+                          <th
+                            scope="col"
+                            class="rounded-tl-lg text-sm font-medium px-6 py-4"
+                          >
+                            Package Name
+                          </th>
+                          <th scope="col" class="text-sm font-medium px-6 py-4">
+                            review
+                          </th>
+                          <th scope="col" class="text-sm font-medium px-6 py-4">
+                            Package End Date
+                          </th>
+                          <th scope="col" class="text-sm font-medium px-6 py-4">
+                            Package rating
+                          </th>
+                          <th scope="col" class="text-sm font-medium px-6 py-4">
+                            Review By:
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr
+                          class="border-b bg-gray-100"
+                          *ngFor="let review of reviews"
+                        >
+                          <th
+                            class="text-sm font-medium px-6 py-4 whitespace-nowrap text-left"
+                            scope="row"
+                          >
+                            {{ review.tour_name }}
+                          </th>
+                          <td
+                            class="text-sm font-normal px-6 py-4 whitespace-nowrap text-left text-gray-500"
+                          >
+                            {{ review.review_content }}
+                          </td>
+                          <td
+                            class="text-sm font-normal px-6 py-4 whitespace-nowrap text-left text-gray-500"
+                          >
+                            {{ review.tour_end_date | date }}
+                          </td>
+                          <td
+                            class="text-sm font-normal px-6 py-4 whitespace-nowrap text-left text-gray-500"
+                          >
+                            {{ review.review_rating}}
+                          </td>
+                          <td
+                            class="text-sm font-normal px-6 py-4 whitespace-nowrap text-left text-gray-500"
+                          >
+                            {{ review.userEmail }}
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!--Section: Design Block-->
+      </div>
+      <!-- Container for demo purpose -->
+    </div>
+  </div>
+</main>
+
+<!-- modals for editing  -->
+<!-- Button trigger modal -->
+<span type="button" class="hidden" data-te-toggle="modal"> launch </span>
+
+<!-- tours modal -->
+<div
+  data-te-modal-init
+  class="fixed left-0 top-0 z-[1055] hidden h-full w-full overflow-y-auto overflow-x-hidden outline-none bg-gray-800 bg-opacity-50"
+  id="tourModal"
+  tabindex="-1"
+  aria-labelledby="tourModalLabel"
+  aria-hidden="true"
+>
+  <div
+    data-te-modal-dialog-ref
+    class="pointer-events-none relative w-auto translate-y-[-50px] opacity-0 transition-all duration-300 ease-in-out min-[576px]:mx-auto min-[576px]:mt-7 min-[576px]:max-w-[500px]"
+  >
+    <div
+      class="min-[576px]:shadow-[0_0.5rem_1rem_rgba(#000, 0.15)] pointer-events-auto relative flex w-full flex-col rounded-lg border-none bg-white bg-clip-padding text-current shadow-lg outline-none dark:bg-neutral-700"
+    >
+      <div
+        class="flex flex-shrink-0 items-center justify-between rounded-t-lg border-b-2 border-neutral-200 p-4 bg-gradient-to-r from-blue-500 to-blue-400"
+      >
+        <h5 class="text-xl font-semibold text-white" id="tourModalLabel">
+          Edit Package
+        </h5>
+        <button
+          type="button"
+          class="box-content rounded-none border-none hover:no-underline hover:opacity-75 focus:opacity-100 focus:shadow-none focus:outline-none"
+          data-te-modal-dismiss
+          aria-label="Close"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="h-6 w-6 text-white"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+      </div>
+
+      <div class="relative flex-auto p-6">
+        <form [formGroup]="editTourForm" (ngSubmit)="onEditTourSubmit()">
+          <!-- Tour Name input -->
+          <div class="relative mb-4">
+            <input
+              formControlName="tour_name"
+              type="text"
+              class="peer block min-h-[auto] w-full rounded-lg border border-gray-300 bg-transparent px-4 py-2 leading-[1.6] outline-none transition-all duration-200 ease-linear focus:border-blue-500 focus:ring focus:ring-blue-200"
+              id="tourName"
+              placeholder=" "
+            />
+            <label
+              for="tourName"
+              class="pointer-events-none absolute left-4 top-2 transition-all duration-200 ease-out transform scale-100 text-gray-500 peer-placeholder-shown:top-2 peer-placeholder-shown:scale-100 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:text-blue-500"
+            ></label>
+          </div>
+
+          <!-- Description textarea -->
+          <div class="relative mb-4">
+            <textarea
+              formControlName="tour_description"
+              class="peer block min-h-[auto] w-full rounded-lg border border-gray-300 bg-transparent px-4 py-2 leading-[1.6] outline-none transition-all duration-200 ease-linear focus:border-blue-500 focus:ring focus:ring-blue-200"
+              id="tourDescription"
+              rows="3"
+              placeholder=" "
+            ></textarea>
+            <label
+              for="tourDescription"
+              class="pointer-events-none absolute left-4 top-2 transition-all duration-200 ease-out transform scale-100 text-gray-500 peer-placeholder-shown:top-2 peer-placeholder-shown:scale-100 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:text-blue-500"
+            ></label>
+          </div>
+
+          <!-- Image input -->
+          <div class="relative mb-4">
+            <input
+              formControlName="tour_img"
+              type="url"
+              class="peer block min-h-[auto] w-full rounded-lg border border-gray-300 bg-transparent px-4 py-2 leading-[1.6] outline-none transition-all duration-200 ease-linear focus:border-blue-500 focus:ring focus:ring-blue-200"
+              id="tourImage"
+              placeholder=" "
+            />
+            <label
+              for="tourImage"
+              class="pointer-events-none absolute left-4 top-2 transition-all duration-200 ease-out transform scale-100 text-gray-500 peer-placeholder-shown:top-2 peer-placeholder-shown:scale-100 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:text-blue-500"
+            ></label>
+          </div>
+
+          <!-- Price input -->
+          <div class="relative mb-4">
+            <input
+              formControlName="price"
+              type="number"
+              class="peer block min-h-[auto] w-full rounded-lg border border-gray-300 bg-transparent px-4 py-2 leading-[1.6] outline-none transition-all duration-200 ease-linear focus:border-blue-500 focus:ring focus:ring-blue-200"
+              id="price"
+              placeholder=" "
+            />
+            <label
+              for="price"
+              class="pointer-events-none absolute left-4 top-2 transition-all duration-200 ease-out transform scale-100 text-gray-500 peer-placeholder-shown:top-2 peer-placeholder-shown:scale-100 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:text-blue-500"
+            ></label>
+          </div>
+
+          <!--  Date input -->
+
+          <div
+            class="relative mb-3"
+            data-te-datepicker-init
+            data-te-format="mm, dd, yyyy"
+            data-te-input-wrapper-init
+          >
+            <input
+              formControlName="start_date"
+              type="text"
+              class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+              placeholder="Select a date"
+              data-te-datepicker-toggle-ref
+              data-te-datepicker-toggle-button-ref
+            />
+            <label
+              for="floatingInput"
+              class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
+              >Select start date</label
+            >
+          </div>
+          <div
+            class="relative mb-3"
+            data-te-datepicker-init
+            data-te-format="mm, dd, yyyy"
+            data-te-input-wrapper-init
+          >
+            <input
+              formControlName="end_date"
+              type="text"
+              class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+              placeholder="Select a date"
+              data-te-datepicker-toggle-ref
+              data-te-datepicker-toggle-button-ref
+            />
+            <label
+              for="floatingInput"
+              class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
+              >Select an end date</label
+            >
+          </div>
+
+          <!-- Submit button -->
+          <button
+            type="submit"
+            class="inline-block w-full rounded-lg bg-blue-500 px-6 py-2 text-xs font-medium uppercase leading-normal text-white shadow-md transition duration-150 ease-in-out hover:bg-blue-600 focus:bg-blue-700 focus:outline-none"
+          >
+            Save changes
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- users modal -->
+<div
+  data-te-modal-init
+  class="fixed left-0 top-0 z-[1055] hidden h-full w-full overflow-y-auto overflow-x-hidden outline-none"
+  id="userModal"
+  tabindex="-1"
+  aria-labelledby="userModalLabel"
+  aria-hidden="true"
+>
+  <div
+    data-te-modal-dialog-ref
+    class="pointer-events-none relative w-auto translate-y-[-50px] opacity-0 transition-all duration-300 ease-in-out min-[576px]:mx-auto min-[576px]:mt-7 min-[576px]:max-w-[500px]"
+  >
+    <div
+      class="min-[576px]:shadow-[0_0.5rem_1rem_rgba(#000, 0.15)] pointer-events-auto relative flex w-full flex-col rounded-md border-none bg-white bg-clip-padding text-current shadow-lg outline-none dark:bg-neutral-600"
+    >
+      <div
+        class="flex flex-shrink-0 items-center justify-between rounded-t-md border-b-2 border-neutral-100 border-opacity-100 p-4 dark:border-opacity-50"
+      >
+        <!--Modal title-->
+        <h5
+          class="text-xl font-medium leading-normal text-neutral-800 dark:text-neutral-200"
+          id="userModalLabel"
+        >
+          Edit a User
+        </h5>
+        <!--Close button-->
+        <button
+          type="button"
+          class="box-content rounded-none border-none hover:no-underline hover:opacity-75 focus:opacity-100 focus:shadow-none focus:outline-none"
+          data-te-modal-dismiss
+          aria-label="Close"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="h-6 w-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+      </div>
+
+      <!--Modal body-->
+      <div class="relative flex-auto p-4" data-te-modal-body-ref>
+        <form [formGroup]="editUserForm" (ngSubmit)="onEditUserSubmit()">
+          <!--Tour Name input-->
+          <div class="relative mb-6" data-te-input-wrapper-init>
+            <input
+              formControlName="fullName"
+              type="text"
+              class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+              id="exampleInput8"
+              placeholder="Full Name"
+            />
+            <label
+              for="exampleInput8"
+              class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
+              >Full Name
+            </label>
+          </div>
+
+          <!--Description textarea-->
+          <div class="relative mb-6" data-te-input-wrapper-init>
+            <input
+              formControlName="email"
+              class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+              id="exampleFormControlTextarea13"
+              rows="3"
+              placeholder="Email"
+            />
+            <label
+              for="exampleFormControlTextarea13"
+              class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
+              >Email
+            </label>
+          </div>
+
+          <!--Submit button-->
+          <button
+            type="submit"
+            class="dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]] inline-block w-full rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+            data-te-ripple-init
+            data-te-ripple-color="light"
+            data-te-modal-dismiss
+          >
+            Submit edited User
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Bookings Modal -->
+<div
+  data-te-modal-init
+  class="fixed left-0 top-0 z-[1055] hidden h-full w-full overflow-y-auto overflow-x-hidden outline-none"
+  id="BookingsModal"
+  tabindex="-1"
+  aria-labelledby="BookingsModalLabel"
+  aria-hidden="true"
+>
+  <div
+    data-te-modal-dialog-ref
+    class="pointer-events-none relative w-auto translate-y-[-50px] opacity-0 transition-all duration-300 ease-in-out min-[576px]:mx-auto min-[576px]:mt-7 min-[576px]:max-w-[500px]"
+  >
+    <div
+      class="min-[576px]:shadow-[0_0.5rem_1rem_rgba(#000, 0.15)] pointer-events-auto relative flex w-full flex-col rounded-md border-none bg-white bg-clip-padding text-current shadow-lg outline-none dark:bg-neutral-600"
+    >
+      <div
+        class="flex flex-shrink-0 items-center justify-between rounded-t-md border-b-2 border-neutral-100 border-opacity-100 p-4 dark:border-opacity-50"
+      >
+        <!--Modal title-->
+        <h5
+          class="text-xl font-medium leading-normal text-neutral-800 dark:text-neutral-200"
+          id="BookingsModalLabel"
+        >
+          Edit a Booking
+        </h5>
+        <!--Close button-->
+        <button
+          type="button"
+          class="box-content rounded-none border-none hover:no-underline hover:opacity-75 focus:opacity-100 focus:shadow-none focus:outline-none"
+          data-te-modal-dismiss
+          aria-label="Close"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="h-6 w-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+      </div>
+
+      <!--Modal body-->
+      <div class="relative flex-auto p-4" data-te-modal-body-ref>
+        <form [formGroup]="editBookingForm" (ngSubmit)="onEditBookingSubmit()">
+          <!--Tour Name input-->
+          <div class="relative mb-6" data-te-input-wrapper-init>
+            <input
+              formControlName="count"
+              type="number"
+              class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+              id="exampleInput8"
+              placeholder="Head Count"
+            />
+            <label
+              for="exampleInput8"
+              class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
+              >Number of poeple attending
+            </label>
+          </div>
+
+          <!--Submit button-->
+          <button
+            type="submit"
+            class="dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]] inline-block w-full rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+            data-te-ripple-init
+            data-te-ripple-color="light"
+            data-te-modal-dismiss
+          >
+            Submit edited Tour
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Cancel Modal -->
+<div
+  *ngIf="showCancelModal"
+  class="fixed z-10 inset-0 overflow-y-auto"
+  aria-labelledby="modal-title"
+  role="dialog"
+  aria-modal="true"
+>
+  <div class="flex items-end justify-center min-h-screen">
+    <div class="bg-white rounded-lg shadow-xl w-96">
+      <div class="p-4">
+        <h2 class="text-lg font-semibold">Cancel Booking</h2>
+        <p>Select a reason for cancellation:</p>
+        <select
+          [(ngModel)]="cancelReason"
+          class="w-full mt-2 p-2 border rounded-lg"
+        >
+          <option value="" disabled selected>Select reason</option>
+          <option value="Not Available">Package Not Available</option>
+          <option value="Package Already Booked">Package Already Booked By another user</option>
+          <option value="User Request">Cancelled due to User Request</option>
+          <option value="Issue with Payment">Cancelled due to Issue with Payment</option>
+          <option value="Package Expired">Package Expired</option>         
+        </select>
+        <div class="flex justify-end space-x-4 mt-4">
+          <button
+            class="bg-gray-500 text-white p-2 rounded-lg"
+            (click)="closeCancelModal()"
+          >
+            Cancel
+          </button>
+          <button
+            class="bg-red-500 text-white p-2 rounded-lg"
+            [disabled]="!cancelReason"
+            (click)="cancelBooking(selectedBookingId!)"
+          >
+            Confirm Cancellation
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,71 @@
+<!-- profile.component.html -->
+<app-navbar></app-navbar>
+
+<section class="pt-10 bg-blueGray-50 flex flex-col items-center px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
+  <h2 class="text-3xl font-bold text-center mb-8"> Your Profile Dude!!</h2>
+
+  <!-- Form for updating image -->
+  <form [formGroup]="imageForm" class="w-full max-w-md space-y-6 bg-white shadow-md rounded-lg p-6">
+    <div class="flex flex-col items-center">
+      <img
+        alt="Profile Image"
+        [src]="
+          imageForm.get('imageUrl')?.value ||
+          'https://img.freepik.com/premium-vector/user-profile-icon-flat-style-member-avatar-vector-illustration-isolated-background-human-permission-sign-business-concept_157943-15752.jpg'
+        "
+        class="shadow-xl rounded-full mb-4 w-32 h-32 object-cover border-4 border-primary"
+      />
+
+      <div class="relative w-full">
+        <input
+          type="text"
+          formControlName="imageUrl"
+          class="block w-full rounded-lg border border-gray-300 px-4 py-2 leading-6 focus:outline-none focus:ring-2 focus:ring-primary-500 transition duration-150 ease-in-out"
+          id="imageUrl"
+          placeholder="Enter Image Link"
+        />
+      </div>
+
+      <button
+        (click)="updateImage()"
+        type="button"
+        class="w-full bg-primary text-white px-6 py-2 rounded-lg transition duration-150 ease-in-out hover:bg-primary-600 focus:outline-none mt-4"
+      >
+        Update Image
+      </button>
+    </div>
+  </form>
+
+  <!-- Form for updating email and full name -->
+  <form [formGroup]="userForm" class="w-full max-w-md space-y-6 bg-white shadow-md rounded-lg p-6 mt-8">
+    <div class="flex flex-col">
+      <div class="relative w-full mb-4">
+        <input
+          type="text"
+          formControlName="fullName"
+          class="block w-full rounded-lg border border-gray-300 px-4 py-2 leading-6 focus:outline-none focus:ring-2 focus:ring-primary-500 transition duration-150 ease-in-out"
+          id="fullName"
+          placeholder="Enter Full Name"
+        />
+      </div>
+
+      <div class="relative w-full mb-4">
+        <input
+          formControlName="email"
+          type="email"
+          class="block w-full rounded-lg border border-gray-300 px-4 py-2 leading-6 focus:outline-none focus:ring-2 focus:ring-primary-500 transition duration-150 ease-in-out"
+          id="exampleFormControlInputEmail"
+          placeholder="Enter Email"
+        />
+      </div>
+
+      <button
+        (click)="updateProfile()"
+        type="button"
+        class="w-full bg-primary text-white px-6 py-2 rounded-lg transition duration-150 ease-in-out hover:bg-primary-600 focus:outline-none"
+      >
+        Update Profile
+      </button>
+    </div>
+  </form>
+</section>
