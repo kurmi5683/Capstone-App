@@ -141,3 +141,11 @@ If the user has a regular user role, they are redirected to the user route:
 1. **User/Admin Profile**  
    ![User/Admin Profile](./screenshots/user-admin-profile.png)  
    (Both users and admins can view and edit their profile information here.)
+
+
+---
+
+### Notification Management
+1. **User/Admin Notification**  
+   ![User/Admin Notification](./screenshots/notification-updates.png)  
+   (Both users and admins can be notified in realtime)
