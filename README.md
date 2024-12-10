@@ -149,3 +149,10 @@ If the user has a regular user role, they are redirected to the user route:
 1. **User/Admin Notification**  
    ![User/Admin Notification](./screenshots/notification-updates.png)  
    (Both users and admins can be notified in realtime)
+---
+
+### Analytics for Admin
+1. **User/Admin Notification**  
+   ![User/Admin Notification](./screenshots/analytics.png)  
+   (Admins can track the revenues of each package booked along with total bookings and total revenue)
+   
